@@ -14,6 +14,7 @@ public class SecondActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
+
         TextView tv = findViewById(R.id.second_txtView);
         tv.setText("안녕~~");
     }
