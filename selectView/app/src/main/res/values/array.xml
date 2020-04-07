@@ -3,6 +3,20 @@
     <string-array name="mylist_data" >
         <item>김범룡</item>
         <item>박정은</item>
+        <item>박정현</item>
+        <item>뱅크</item>
+        <item>녹색지대</item>
+        <item>BTS</item>
+        <item>아스트로</item>
+        <item>백지영</item>
+        <item>소녀시대</item>
+        <item>이승철</item>
+        <item>이승환</item>
+        <item>김건모</item>
+        <item>신승훈</item>
+        <item>소녀시대</item>
+        <item>김범룡</item>
+        <item>박정은</item>
         <item>뱅크</item>
         <item>녹색지대</item>
         <item>BTS</item>
@@ -12,6 +26,6 @@
         <item>이승철</item>
         <item>김건모</item>
         <item>신승훈</item>
-        <item>소녀시대</item>
+
     </string-array>
 </resources>

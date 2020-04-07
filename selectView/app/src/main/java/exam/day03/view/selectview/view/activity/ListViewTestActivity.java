@@ -1,4 +1,4 @@
-package exam.day03.view.selectview;
+package exam.day03.view.selectview.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import exam.day03.view.selectview.R;
 
 public class ListViewTestActivity extends AppCompatActivity {
     //1.ListView에 출력할 데이터

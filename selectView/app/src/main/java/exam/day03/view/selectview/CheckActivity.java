@@ -1,7 +1,6 @@
 package exam.day03.view.selectview;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -137,6 +136,4 @@ public class CheckActivity extends AppCompatActivity {
             }
         }
     }
-
-
 }

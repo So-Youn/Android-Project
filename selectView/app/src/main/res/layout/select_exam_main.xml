@@ -4,17 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activity.ListViewTestActivity"
+    tools:context=".view.activity.SelectView_ExamActity"
     android:orientation="vertical">
-    <TextView
-        android:id="@+id/listTxt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="info"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+
     <ListView
-        android:id="@+id/listview1"
+        android:id="@+id/cust_listview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-
 </LinearLayout>
