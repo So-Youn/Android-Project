@@ -15,10 +15,10 @@ public class ViewHolder {
     CheckBox checkbox;
 
     public ViewHolder(View parentView) {
-        this.atImg = parentView.findViewById(R.id.atImg);
-        this.nameView = parentView.findViewById(R.id.nameView);
-        this.dateView = parentView.findViewById(R.id.dateView);
-        this.dataView = parentView.findViewById(R.id.dataView);
+        this.atImg = parentView.findViewById(R.id.myImg);
+        this.nameView = parentView.findViewById(R.id.name);
+        this.dateView = parentView.findViewById(R.id.date);
+        this.dataView = parentView.findViewById(R.id.resultinfo);
         this.checkbox = parentView.findViewById(R.id.checkbox);
     }
 }
