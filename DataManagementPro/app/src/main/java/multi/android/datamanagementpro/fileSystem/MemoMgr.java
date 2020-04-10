@@ -35,24 +35,12 @@ public class MemoMgr extends AppCompatActivity {
     boolean permission_state;
     EditText memoview;
     Date date = new Date();
-    SimpleDateFormat nowDate = new SimpleDateFormat("yyyy,MM.DD", java.util.Locale.getDefault());
+    SimpleDateFormat nowDate = new SimpleDateFormat("yyyyMMDD");
+    String time = nowDate.format(date);
     String[] permissions = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
-
-    checkPermissions(permissions);
-
-
-public void checkPermissions(String[] permissions) {
-    ArrayList<String> list = new ArrayList<String>();
-    for(int i=0;i<permissions.length;i++){
-        String curPermission = permissions[i];
-        int permissionCheck = ContextCompat.checkSelfPermission(this,curPermission);
-        if(permissionCheck == PackageManager.PERMISSION_GRANTED){
-            printToast
-        }
-}
 
 
     @Override
@@ -64,6 +52,7 @@ public void checkPermissions(String[] permissions) {
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {  //int리턴
             permission_state = true;
+            printToast("권한 설정");
 
         } else {
             permission_state = false;
@@ -95,44 +84,70 @@ public void checkPermissions(String[] permissions) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
-    public void saveFile(View v) {
+    public void saveFile(View v) throws IOException {
+        String text = memoview.getText().toString();
         printToast("저장버튼");
-        String state = Environment.getExternalStorageState();
-        if (state.equals(Environment.MEDIA_MOUNTED)) {
-            File external = Environment.getExternalStorageDirectory();
+        if(permission_state){
+            printToast("권한 설정 O");
+            String state = Environment.getExternalStorageState();
+            if (state.equals(Environment.MEDIA_MOUNTED)) {
+                File external = Environment.getExternalStorageDirectory();
 
-            String dirPath = external.getAbsolutePath() + "/" + nowDate + "mynote";
-            File dir = new File(dirPath);
-
-            if (!dir.exists()) {
-                dir.mkdir();
-            }
-            FileWriter fw = null;
-            try {
-                fw = new FileWriter(dir + "/_memo.txt");
-                fw.write("지금은 안드로이드 외부저장소에 파일을 저장하고 " +
-                        "저장된 파일을 오픈하는 연습을 하는 시간입니다.");
-               // openFile(v);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
+                String dirPath = external.getAbsolutePath() + "/Android/mynote";
+                File dir = new File(dirPath);
+                openFile(v);
+                if (!dir.exists()) {
+                    dir.mkdir();
+                }
+                FileWriter fw = null;
                 try {
-                    if (fw != null) {
-                        fw.close();
-                    }
+                    fw = new FileWriter(dir + "/"+time+"_memo.txt");
+                    fw.write(text);
 
                 } catch (IOException e) {
                     e.printStackTrace();
-                }
-            }
+                } finally {
+                    try {
+                        if (fw != null) {
+                            fw.close();
+                        }
 
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
         }
+
 
     }
 
 
+    public void openFile(View view) throws IOException {
+        StringBuffer sb = new StringBuffer();
+        File external = Environment.getExternalStorageDirectory();
+        String dirPath = external.getAbsolutePath()+"/Android/mynote";
+
+        InputStream input = new FileInputStream(dirPath+"/"+time+"_memo.txt");
+        printToast("열기");
+        BufferedReader br = new BufferedReader(new InputStreamReader(input));
+        String line = "";
+        StringBuffer data = null;
+        while ((line = br.readLine())!=null){
+            data = sb.append(line+"\n");
+        }
+        memoview.setText(data);
+    }
+
+    public void newFile(View v){
+        memoview.setText("  ");
+    }
+
 }
-}
+
+
+
 
 
 

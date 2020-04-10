@@ -16,9 +16,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="열기"
+            android:onClick="openFile"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            tools:layout_editor_absoluteX="112dp"
-            tools:layout_editor_absoluteY="215dp" />
+             />
 
         <Button
             android:id="@+id/saveBtn"
@@ -27,16 +27,16 @@
             android:text="저장하기"
             android:onClick="saveFile"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            tools:layout_editor_absoluteX="253dp"
-            tools:layout_editor_absoluteY="205dp" />
+            />
 
         <Button
             android:id="@+id/newFile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="newFile"
+            android:text="새 파일"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            tools:layout_editor_absoluteX="304dp"
-            tools:layout_editor_absoluteY="246dp" />
+            />
     </LinearLayout>
     <EditText
         android:id="@+id/memoview"
