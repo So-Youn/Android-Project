@@ -12,7 +12,7 @@ public class ViewTestActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.viewtest);
+        setContentView(R.layout.etc_view);
 
     }
 
