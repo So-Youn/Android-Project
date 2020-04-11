@@ -19,9 +19,11 @@
         <!--<activity android:name=".fileSystem.MemoMgr"></activity>-->
         <!-- <activity android:name="fileSystem.ExternalFileMgr"></activity> -->
         <!-- <activity android:name=".fileSystem.InternalFileMgr"></activity> -->
+        <!--<activity android:name=".preference.SharedPreferenceTest" />-->
         <activity android:name=".permission.BasicPermissionTest" />
         <activity android:name=".permission.UseCustomPermission" />
-        <activity android:name=".fileSystem.MemoMgr">
+        <activity android:name=".preference.SharedPreferenceTest"/>
+        <activity android:name=".sqllite.exam.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
