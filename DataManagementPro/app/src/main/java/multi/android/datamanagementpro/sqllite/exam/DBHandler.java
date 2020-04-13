@@ -10,17 +10,15 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 public class DBHandler {
-    static EditText edtName;
-    static EditText edtSu;
-    static EditText edtPrice;
+
     static DBHandler handler;
-    ListView listview;
+    static ExamDBHelper helper; // 자기 자신을 매개변수로
     Context context;
     static SQLiteDatabase ExamDB;
 
     public DBHandler(Context context){
         this.context = context;
-        ExamDBHelper helper = new ExamDBHelper(context);
+        helper = new ExamDBHelper(context);
         ExamDB = helper.getWritableDatabase();
     }
 
@@ -45,48 +43,27 @@ public class DBHandler {
 
 
 
-    public ArrayList resultAll(String name, String price, String su) {
-        ArrayList<String> data = new ArrayList<String>();
+    public Cursor resultAll() {
+      Cursor cursor = ExamDB.query("product",new String[]{"id","name","price"},null,null,null,null,null);
+        ArrayList<String> list = new ArrayList<String>(); //ArrayList형태의 변수 선언
         StringBuffer sb = new StringBuffer();
+      while(cursor.moveToNext()){
+          int idx = cursor.getInt(0);
+          String name = cursor.getString(1);
+          int price = cursor.getInt(2);
+          sb.append(idx + ",").append(name+",").append(price+",");
+          list.add(sb.toString());
+      }
 
-        Cursor cursor = ExamDB.query("product",null,null,
-                null,null,null,null);
-        int count = cursor.getCount();
-        while(cursor.moveToNext()){
-            String id = cursor.getString(0);
-            name = cursor.getString(1);
-            price = cursor.getString(2);
-            su = cursor.getString(3);
-            sb.append(id + " ");
-            sb.append(name + " ");
-            sb.append(price+" ");
-            sb.append("\n");
-        }
-        data.add(sb.toString()+"\n");
-        return data;
+      return (Cursor) list;
     }
 
-    public ArrayList resultTotal(String name, String price, String su) {
-        ArrayList<ArrayList<String>> data = new ArrayList<>();
-        ArrayList<String> list = new ArrayList<String>();
-        Cursor cursor = ExamDB.query("product", null, null,
-                null, null, null, null);
-        int count = cursor.getCount();
-        while (cursor.moveToNext()) {
-            String id = cursor.getString(0);
-            name = cursor.getString(1);
-            price = cursor.getString(2);
-            su = cursor.getString(3);
-            list.add(name);
-            list.add(price);
-            list.add(su);
+    public Cursor resultTotal() {
+      Cursor cursor = ExamDB.query("product",null,null,null,null,
+              null,null);
 
-            data.add(list);
-        }
-        return (ArrayList) cursor;
+        return cursor;
     }
 
 
-    public static class resultTotal extends ArrayList {
-    }
 }

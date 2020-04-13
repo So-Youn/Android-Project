@@ -103,7 +103,5 @@ public class DBMainActivity_ContentValues extends AppCompatActivity {
 
     public void delete(View v){
          db.delete("member","id=?",new String[]{id.getText().toString()});
-
-
     }
 }

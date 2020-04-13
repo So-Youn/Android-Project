@@ -45,8 +45,6 @@ public class MainActivity extends
 		edtName = (EditText)findViewById(R.id.edtName);
 		edtSu = (EditText)findViewById(R.id.edtSu);
 		edtPrice = (EditText)findViewById(R.id.edtPrice);
-		handler = new DBHandler(this);
-
 
 	}
 
@@ -57,16 +55,25 @@ public class MainActivity extends
             handler.insert(edtName.getText().toString(),edtSu.getText().toString(),
 					edtPrice.getText().toString());
         }else if(v.getId()==R.id.btnResult){
-			ArrayList data = handler.resultAll(edtName.getText().toString(),edtSu.getText().toString(),
-					edtPrice.getText().toString());
-			ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_activated_1, data);
+        	Cursor cursor = handler.resultAll();
+			ArrayList<String> list = new ArrayList<String>(); //ArrayList형태의 변수 선언
+			ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,list);
 			listview.setAdapter(adapter);
+
 		}else if(v.getId()==R.id.btnResult2){
-			ArrayList cursor =new DBHandler.resultTotal(edtName.getText().toString(),edtSu.getText().toString(),
-					edtPrice.getText().toString());
-
-			ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_2, cursor);
-
+			ArrayList<String> datalist = new ArrayList<String>();
+			StringBuffer sb = new StringBuffer();
+			Cursor cursor = handler.resultTotal();
+			while(cursor.moveToNext()){
+				sb.setLength(0);
+				String name = cursor.getString(1);
+				int price = cursor.getInt(2);
+				sb.append(name).append("\n").append(price);
+				datalist.add(sb.toString());
+			}
+			ArrayAdapter adapter = new ArrayAdapter(this,
+					android.R.layout.simple_list_item_1,datalist);
+			listview.setAdapter(adapter);
 		}
 	}
 
