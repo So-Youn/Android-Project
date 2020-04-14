@@ -1,4 +1,4 @@
-package multi.android.support_lib.fragment;
+package multi.android.support_lib.viewpager.exam;
 
 import android.os.Bundle;
 
@@ -10,20 +10,16 @@ import android.view.ViewGroup;
 
 import multi.android.support_lib.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class SecondFragment extends Fragment {
 
-    public SecondFragment() {
-        // Required empty public constructor
+public class MapFragment extends Fragment {
+
+    public MapFragment() {
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_second2, container, false);
+        return inflater.inflate(R.layout.maptest, container, false);
     }
 }

@@ -9,7 +9,7 @@ import android.view.View;
 
 import multi.android.support_lib.R;
 
-public class Test extends AppCompatActivity {
+public class MainTest extends AppCompatActivity {
     FirstFragment firstFragment = new FirstFragment();
     SecondFragment secondFragment = new SecondFragment();
     ThirdFragment thirdFragment = new ThirdFragment();

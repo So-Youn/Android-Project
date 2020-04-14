@@ -1,4 +1,4 @@
-package multi.android.map_location_pro.pagement;
+package multi.android.map_location_pro.map;
 
 import androidx.appcompat.app.AppCompatActivity;
 

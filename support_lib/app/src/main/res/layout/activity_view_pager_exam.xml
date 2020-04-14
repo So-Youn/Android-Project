@@ -39,6 +39,10 @@
             android:tag="2"
             android:text="세번째뷰" />
     </LinearLayout>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/mainpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -51,10 +55,10 @@
             android:name="multi.android.support_lib.fragment.exam.FirstFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            />
-     </LinearLayout>
-   
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    </androidx.viewpager.widget.ViewPager>
 
 
 </LinearLayout>
