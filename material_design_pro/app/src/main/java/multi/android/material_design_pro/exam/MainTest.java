@@ -24,7 +24,7 @@ import multi.android.material_design_pro.R;
 public class MainTest extends AppCompatActivity {
 
     ArrayList<Fragment> viewlist = new ArrayList<Fragment>();
-    String[] tablist ={"버튼1", "버튼2","버튼3"};
+    String[] tablist ={"추천 여행지", "축제","나의 여행지"};
 
     FirstFragment firstFragment;
     ListTestFragment secondFragment;
@@ -44,6 +44,7 @@ public class MainTest extends AppCompatActivity {
         firstFragment = new FirstFragment();
         secondFragment = new ListTestFragment();
         thirdFragment = new ThirdFragment();
+
 
         viewlist.add(firstFragment);
         viewlist.add(secondFragment);
