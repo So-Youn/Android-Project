@@ -17,6 +17,7 @@ import android.widget.ListView;
 
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -30,14 +31,14 @@ public class AppbarTest extends AppCompatActivity {
     CollapsingToolbarLayout toolbarLayout;
     FloatingActionButton fab;
     ListView listView;
-
+    BottomAppBar bottomAppBar;
     ArrayList<String> datalist = new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appbar_test);
         toolbar =findViewById(R.id.toolbar);
-
+        bottomAppBar = findViewById(R.id.bottom_bar);
         app_bar_image = findViewById(R.id.app_bar_image);
         toolbarLayout = findViewById(R.id.toolbar_layout);
         fab = findViewById(R.id.fab);
@@ -52,6 +53,12 @@ public class AppbarTest extends AppCompatActivity {
 
         toolbarLayout.setCollapsedTitleGravity(Gravity.CENTER);
         toolbarLayout.setExpandedTitleGravity(Gravity.RIGHT+Gravity.TOP);
+
+        bottomAppBar.setFabAlignmentMode(BottomAppBar.FAB_ALIGNMENT_MODE_CENTER);
+        //bottomAppBar의 floating action을 가운데로 맞춰준다.
+        bottomAppBar.setFabCradleRoundedCornerRadius(100);
+        bottomAppBar.setFabCradleMargin(20);
+
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1,

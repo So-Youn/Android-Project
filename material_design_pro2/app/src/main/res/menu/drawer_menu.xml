@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/Item1"
+        android:title="내가 본 레시피"
+        android:icon="@android:drawable/ic_menu_agenda"/>
+    <item
+        android:id="@+id/Item2"
+        android:title="스크랩한 레시피"
+        android:icon="@android:drawable/ic_menu_my_calendar"/>
+    <item
+        android:id="@+id/Item3"
+        android:title="리뷰한 레시피"
+        android:icon="@android:drawable/ic_menu_directions"/>
+    <item
+        android:id="@+id/Item4"
+        android:title="레시피노트"
+        android:icon="@android:drawable/ic_menu_info_details"/>
+</menu>
