@@ -29,8 +29,6 @@ public class ExamDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        Log.d("dbtest","데이터베이스의 스키마가 변경되었습니다 : oldVersion :"
-                +oldVersion+"newVersion:"+newVersion);
         switch (oldVersion){
             case 1:
                 Log.d("dbtest","2버전으로 변경");

@@ -15,8 +15,11 @@ public class ReadActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.read);
 		Intent intent = getIntent();
-		Bundle data = intent.getExtras();
+
 		TextView t = (TextView)findViewById(R.id.show);
+		Product data = intent.getParcelableExtra("data");
+
+		t.setText(data.get_id()+","+data.getName()+","+data.getPrice());
 	
 	}
 

@@ -20,6 +20,7 @@
         <!-- <activity android:name="fileSystem.ExternalFileMgr"></activity> -->
         <!-- <activity android:name=".fileSystem.InternalFileMgr"></activity> -->
         <!--<activity android:name=".preference.SharedPreferenceTest" />-->
+        <activity android:name=".sqllite.exam.ReadActivity"/>
         <activity android:name=".permission.BasicPermissionTest" />
         <activity android:name=".permission.UseCustomPermission" />
         <activity android:name=".preference.SharedPreferenceTest"/>

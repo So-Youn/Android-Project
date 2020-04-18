@@ -2,6 +2,7 @@ package multi.android.datamanagementpro.sqllite.exam;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.EditText;
@@ -10,60 +11,49 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 public class DBHandler {
-
-    static DBHandler handler;
-    static ExamDBHelper helper; // 자기 자신을 매개변수로
+    static ExamDBHelper examDBHelper;
+    static SQLiteDatabase db;
     Context context;
-    static SQLiteDatabase ExamDB;
-
     public DBHandler(Context context){
         this.context = context;
-        helper = new ExamDBHelper(context);
-        ExamDB = helper.getWritableDatabase();
+        examDBHelper = new ExamDBHelper(context);
+        db = examDBHelper.getWritableDatabase();
     }
-
-    public DBHandler open(Context context){
-        if(context != null){
-            handler = new DBHandler(context);
-            return handler;
-        }
-        return handler;
-    }
-
-    public void insert(String edtName, String edtSu, String edtPrice) {
+    public void insert(String edtName, String edtSu, String edtPrice){
         ContentValues contentValues = new ContentValues();
-        contentValues.put("name",edtName);
-        contentValues.put("price",edtSu);
-        contentValues.put("su",edtPrice);
-        contentValues.put("totPrice",Integer.parseInt(edtSu)*Integer.parseInt(edtPrice));
-        ExamDB.insert("product",null,contentValues);
+        contentValues.put("name", edtName);
+        contentValues.put("price", Integer.parseInt(edtPrice));
+        contentValues.put("su", Integer.parseInt(edtSu));
+        contentValues.put("totPrice",
+                (Integer.parseInt(edtSu)
+                        *Integer.parseInt(edtPrice)));
+        db.insert("product",null,contentValues);
     }
-
-
-
-
-
-    public Cursor resultAll() {
-      Cursor cursor = ExamDB.query("product",new String[]{"id","name","price"},null,null,null,null,null);
-        ArrayList<String> list = new ArrayList<String>(); //ArrayList형태의 변수 선언
+    public Cursor result1(){
+        Cursor cursor = db.query("product",new String[]{"_id", "name", "price"},null,null,
+                null,null,null);
+        return cursor;
+    }
+    public Cursor result2(){
+        Cursor cursor = db.query("product",null,null,null,
+                null,null,null);
+        return cursor;
+    }
+    public Cursor search(String edtName){
+        String where = "name like ?";
+        String[] whereVal = {"%"+edtName+"%"};
+        Cursor cursor = db.query("product",new String[]{"name","price"},where,whereVal,
+                null,null,null);
+        return cursor;
+    }
+    public Cursor detail(int position){
+        String where = "_id = ?";
         StringBuffer sb = new StringBuffer();
-      while(cursor.moveToNext()){
-          int idx = cursor.getInt(0);
-          String name = cursor.getString(1);
-          int price = cursor.getInt(2);
-          sb.append(idx + ",").append(name+",").append(price+",");
-          list.add(sb.toString());
-      }
-
-      return (Cursor) list;
-    }
-
-    public Cursor resultTotal() {
-      Cursor cursor = ExamDB.query("product",null,null,null,null,
-              null,null);
+        sb.append(position+1);
+        String[] whereVal = {sb.toString()};
+        Cursor cursor = db.query("product",null,where,
+                whereVal,null, null,null);
 
         return cursor;
     }
-
-
 }
