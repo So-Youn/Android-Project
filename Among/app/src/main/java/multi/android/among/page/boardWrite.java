@@ -9,17 +9,18 @@ import android.widget.Spinner;
 import multi.android.among.R;
 
 public class boardWrite extends AppCompatActivity {
-    Spinner sortSpinner;
+    Spinner spinner_sort;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board_write);
 
-        sortSpinner =findViewById(R.id.spinner_sort);
+        spinner_sort = findViewById(R.id.spinner_sort);
         ArrayAdapter sortAdapter = ArrayAdapter.createFromResource(this,
                 R.array.sort, android.R.layout.simple_spinner_item);
         sortAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sortSpinner.setAdapter(sortAdapter);
+        spinner_sort.setAdapter(sortAdapter);
 
     }
 }

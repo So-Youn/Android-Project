@@ -30,12 +30,15 @@ public class DBHandler {
         db.insert("product",null,contentValues);
     }
     public Cursor result1(){
-        Cursor cursor = db.query("product",new String[]{"_id", "name", "price"},null,null,
+        Cursor cursor = db.query("product",
+                new String[]{"_id", "name", "price"},
+                null,null,
                 null,null,null);
         return cursor;
     }
     public Cursor result2(){
-        Cursor cursor = db.query("product",null,null,null,
+        Cursor cursor = db.query("product",
+                null,null,null,
                 null,null,null);
         return cursor;
     }
