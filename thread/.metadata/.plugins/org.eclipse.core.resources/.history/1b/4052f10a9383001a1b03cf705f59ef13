@@ -1,0 +1,36 @@
+package sync;
+
+class deposit extends Thread {
+	Account acc1;
+	Account acc2;
+
+public void run(){
+
+	public void open(long amount) {
+		System.out.println(acc1 + "가 입금");
+
+		for (int i = 1; i <= 20; i++) {
+			acc1.withdraw(100);
+			acc2.deposit(100);
+			System.out.println(acc1.getBalance() + "," + acc2.getBalance());
+		}
+	}
+}
+}
+public class ThreadSyncTest02 {
+	public static void main(String[] args) {
+		// 1. 공유객체 만들기
+		SharedObj obj = new SharedObj();
+		obj.acc1 = new Account("111-222-3333", 5000, "현빈");
+		obj.acc2 = new Account("333-444-5555", 5000, "현빈");
+
+		// 2. 쓰레드 생성
+		Thread th1 = new Thread(obj.acc1);
+		Thread th2 = new Thread(obj.acc2);
+
+		// 3. 생성한 쓰레드 start 시키기
+		th1.start();
+		th2.start();
+	}
+
+}

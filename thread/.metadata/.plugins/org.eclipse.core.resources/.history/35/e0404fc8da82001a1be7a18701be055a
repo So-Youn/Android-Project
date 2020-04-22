@@ -1,0 +1,24 @@
+package basic;
+class DigitThread extends Thread{
+	public DigitThread(String name) {
+		super(name);
+	}
+}
+class AlphaThread extends Thread{
+	public AlphaThread(String name) {
+		super(name);
+	}
+}
+public class ThreadExam01 {
+
+	public static void main(String[] args) {
+		System.out.println("******프로그램 시작******");
+		DigitThread digit = new DigitThread("digit");
+		AlphaThread alpha = new AlphaThread("alpha");
+		
+		digit.start();
+		alpha.start();
+
+	}
+
+}

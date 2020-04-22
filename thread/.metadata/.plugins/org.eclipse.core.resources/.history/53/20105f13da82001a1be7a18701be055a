@@ -1,0 +1,17 @@
+package basic;
+class DigitThread extends Thread{
+	public DigitThread(String name) {
+		super(name);
+	}
+}
+class AlphaThread extends Thread{
+	
+}
+public class ThreadExam01 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

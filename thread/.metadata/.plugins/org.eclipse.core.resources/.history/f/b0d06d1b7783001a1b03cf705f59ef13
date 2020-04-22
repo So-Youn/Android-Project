@@ -1,0 +1,28 @@
+package basic;
+class stopThread01 extends Thread{
+	public void run() {
+		while(true) { // 보통 무한 루프 상태에서 Thread를 던진다
+			System.out.println("쓰레드 실행 중~~");
+			try {
+				Thread.sleep(1000);
+			}catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+		}
+	}
+}
+public class StopThreadTest01 {
+	public static void main(String[] args) {
+		System.out.println("main쓰레드 시작");
+		stopThread01 t1 = new stopThread01();
+		t1.start();
+		try {
+			Thread.sleep(3000);
+		}catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println("main 쓰레드 종료");
+	}
+
+}

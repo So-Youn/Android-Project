@@ -1,0 +1,41 @@
+package basic;
+/*
+ * 멀티쓰레드 프로그래밍
+ * 1. Runnable 인터페이스를 구현하는 클래스를 생성
+ */
+class RunnableDemo1 implements Runnable{
+	public void run() {
+		for(int i=1;i<=20;i++) {
+			System.out.print(i);
+			try {
+				Thread.sleep(500);// 실행흐름 멈춘다
+			}catch(InterruptedException e) {
+				e.printStackTrace();
+			}
+			if(i%5==0) {
+				System.out.println();
+			}
+		}
+	}
+}
+	public class RunnableTest01{
+		public static void main(String[] args) {
+			System.out.println("******프로그램 시작******");
+			ThreadDemo01 t1 = new ThreadDemo01("t1");
+			ThreadDemo01 t2 = new ThreadDemo01("t2");
+			//t1.run(); -> 단순한 메소드 호출 ( 쓰레드 프로그래밍을 할 수 없다. )
+			t1.start();
+			t2.start();
+			System.out.println("작업중....");
+			for(int i=1;i<=10;i++) {
+				System.out.println("main");
+				try {
+					Thread.sleep(500);
+				}catch(InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+			System.out.println("****프로그램 종료 *****");
+		}
+
+	}

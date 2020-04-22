@@ -1,0 +1,15 @@
+package basic;
+/*
+ * 멀티쓰레드 프로그래밍
+ * 1. Thread 클래스를 상속
+ * 
+ */
+class ThreadDemo01 extends Thread{
+	
+}
+public class ThreadTest01 {
+	public static void main(String[] args) {
+
+	}
+
+}

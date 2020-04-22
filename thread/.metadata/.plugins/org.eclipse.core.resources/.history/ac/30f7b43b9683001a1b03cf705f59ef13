@@ -1,0 +1,48 @@
+package sync;
+
+class deposit extends Thread {
+	private SharedObj obj;
+	public deposit(SharedObj obj) {
+		this.obj = obj;
+	}
+	public void run() {
+		for (int i = 1; i <= 5; i++) {
+			obj.acc1.deposit(100);
+			obj.acc2.deposit(100);
+			System.out.println(obj.acc1.getBalance() + "," + obj.acc2.getBalance());
+		}
+
+	}
+}
+class withdraw extends Thread{
+	private SharedObj obj;
+	public withdraw(SharedObj obj) {
+		this.obj = obj;
+	}
+	public void run() {
+		for (int i = 1; i <= 20; i++) {
+			obj.acc1.withdraw(100);
+			obj.acc2.deposit(100);
+			System.out.println(obj.acc1.getBalance() + "," + obj.acc2.getBalance());
+		}
+
+	}
+}
+
+public class ThreadSyncTest02 {
+	public static void main(String[] args) {
+		// 1. 공유객체 만들기
+		SharedObj obj = new SharedObj();
+		obj.acc1 = new Account("111-222-3333", 5000, "현빈");
+		obj.acc2 = new Account("333-444-5555", 5000, "김서연");
+
+		// 2. 쓰레드 생성
+		deposit th1 = new deposit(obj);
+		
+
+		// 3. 생성한 쓰레드 start 시키기
+		th1.start();
+		//th2.start();
+	}
+
+}

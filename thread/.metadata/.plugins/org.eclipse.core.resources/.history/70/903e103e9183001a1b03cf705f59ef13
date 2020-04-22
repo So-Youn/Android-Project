@@ -1,0 +1,25 @@
+package sync;
+
+public class SharedObj {
+	Account acc1; // Çöºó
+	Account acc2; //±è¼­¿¬ °èÁÂ
+	
+	public void open(String accId,long balance,long amount) {
+		System.out.println(accId+"°¡ ÀÔ±Ý");
+		for(int i=1;i<=5;i++) {
+			acc1.deposit(amount);
+			acc2.deposit(amount);
+			System.out.println(acc1.getBalance()+","+acc2.getBalance());	
+		}
+		
+		for(int i=1;i<=20;i++) {
+			acc1.withdraw(100);
+			acc2.deposit(100);
+			System.out.println(acc1.getBalance()+","+acc2.getBalance());
+		}
+	}
+	
+	
+	
+	
+}

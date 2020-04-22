@@ -1,0 +1,14 @@
+package sync;
+
+public class SumPrintThread extends Thread{
+	SharedObj obj;
+	
+	public SumPrintThread(SharedObj obj) {
+		super();
+		this.obj = obj;
+	}
+	public void run() {
+		
+	}
+
+}

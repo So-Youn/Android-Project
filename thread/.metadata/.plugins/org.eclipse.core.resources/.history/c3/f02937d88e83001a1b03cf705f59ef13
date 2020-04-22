@@ -1,0 +1,12 @@
+package sync;
+
+public class SharedObj {
+	Account acc1; // Çöºó
+	Account acc2; //±è¼­¿¬ °èÁÂ
+	
+	public void deposit(String accId,long balance) {
+		System.out.println(accId+"°¡ ÀÔ±Ý");
+		
+	}
+	
+}
