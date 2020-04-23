@@ -53,13 +53,13 @@ public class TabTest extends AppCompatActivity {
             public void onTabSelected(TabLayout.Tab tab) {
                 int position = tab.getPosition(); //탭의 순서 받아오기
                 Log.d("tab",position+"");
-                Fragment fragment = null;
+                Fragment fragment;
                 if(position==0){
-                    fragment = firstFragment;
+                     fragment = firstFragment;
                 }else if(position ==1){
-                    fragment = secondFragment;
+                     fragment = secondFragment;
                 }else {
-                    fragment = thirdFragment;
+                     fragment = thirdFragment;
                 }
                 //탭을 선택할 때 지정된 프래그먼트 객체가 show되도록 연결
                 getSupportFragmentManager().beginTransaction().

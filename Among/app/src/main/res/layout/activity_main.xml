@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".page.MainActivity">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/function_tab"
@@ -38,13 +38,16 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:id="@+id/function_container"
+        >
 
         <fragment
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="multi.android.among.page.CommunityFragment"
-        android:id="@+id/function_container"/>
+        android:layout_weight="1"
+        android:name="multi.android.among.page.NurseFragment"
+        />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/content_container"

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".page.boardWrite">
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
@@ -19,12 +20,15 @@
         android:id="@+id/spinner_sort"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:spinnerMode="dialog"
         android:entries="@array/sort"/>
+
         <EditText
             android:id="@+id/board_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="글 제목을 입력해 주세요."
+            android:layout_margin="20dp"
             android:focusable="true"/>
         <EditText
             android:id="@+id/board_content"
@@ -42,27 +46,26 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+              android:layout_weight="1"
+                android:layout_margin="20dp"
+                android:background="#EDDEB0"
                 android:text="취소" />
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="20dp"
                 android:layout_weight="1"
-                android:text="등록" />
+                android:text="등록"
+                android:background="#FFEDDEB0"/>
         </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/content_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         app:menu="@menu/bottom_bar"/>
-    </LinearLayout>
+
 
 </LinearLayout>

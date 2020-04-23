@@ -1,27 +1,22 @@
-package multi.android.among;
+package multi.android.among.page;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+import multi.android.among.R;
 
-import multi.android.among.page.CommunityFragment;
-import multi.android.among.page.HealthFragment;
-import multi.android.among.page.NurseFragment;
-import multi.android.among.page.PolicyFragment;
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
 
     BottomNavigationView bottomNavigationView;
@@ -30,7 +25,8 @@ public class MainActivity extends AppCompatActivity {
     HealthFragment healthFragment = new HealthFragment();
     PolicyFragment policyFragment = new PolicyFragment();
     TabLayout tabLayout;
-    // Fragment fragment;
+    //RecyclerView recyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,13 +34,15 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottom_navi);
         tabLayout = findViewById(R.id.function_tab);
+      //  recyclerView = findViewById(R.id.list);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.item1) {
+
                     getSupportFragmentManager().beginTransaction().
-                            replace(R.id.function_container, nurseFragment).commit();
+                            replace(R.id.function_container, policyFragment).commit();
                 }else if(menuItem.getItemId()==R.id.item2){
                     getSupportFragmentManager().beginTransaction().
                             replace(R.id.function_container, nurseFragment).commit();
@@ -56,12 +54,15 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
 
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 int position = tab.getPosition();
-                Fragment fragment = null;
+                Fragment fragment;
+                Log.d("msg",position+"");
+
                 if(position==0){
                     fragment = policyFragment;
                 }else if(position ==1){
@@ -69,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 }else {
                     fragment = nurseFragment;
                 }
+                Log.d("msg",fragment+" ::");
                 getSupportFragmentManager().beginTransaction().
                         replace(R.id.function_container,fragment).commit();
             }
@@ -83,6 +85,11 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+    }
+    public void btn_register(View view){
+        Intent intent = new Intent(MainActivity.this,boardWrite.class);
+        startActivity(intent);
     }
 }
 
