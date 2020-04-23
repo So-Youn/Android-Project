@@ -7,19 +7,45 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/function_tab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="커뮤니티"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-<fragment
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_weight="1"
-    android:id="@+id/function_container"/>
+        app:tabMode="fixed"
+        app:tabTextColor="@color/colorPrimary"
+        app:tabSelectedTextColor="@color/colorAccent"
+        android:background="@android:color/background_light">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_polish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="정책" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_health"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="복지" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_nurse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="요양시설" />
+    </com.google.android.material.tabs.TabLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="multi.android.among.page.CommunityFragment"
+        android:id="@+id/function_container"/>
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/content_container"
         android:layout_width="match_parent"
