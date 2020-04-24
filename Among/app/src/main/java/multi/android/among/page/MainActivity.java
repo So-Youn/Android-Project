@@ -42,13 +42,16 @@ public class MainActivity extends AppCompatActivity{
                 if (menuItem.getItemId() == R.id.item1) {
 
                     getSupportFragmentManager().beginTransaction().
-                            replace(R.id.function_container, policyFragment).commit();
+                            replace(R.id.function_container, policyFragment).commitAllowingStateLoss();
+                    return true;
                 }else if(menuItem.getItemId()==R.id.item2){
                     getSupportFragmentManager().beginTransaction().
-                            replace(R.id.function_container, nurseFragment).commit();
+                            replace(R.id.function_container, nurseFragment).commitAllowingStateLoss();
+                    return true;
                 }else if(menuItem.getItemId()==R.id.item3){
                     getSupportFragmentManager().beginTransaction().
-                            replace(R.id.function_container, communityFragment).commit();
+                            replace(R.id.function_container, communityFragment).commitAllowingStateLoss();
+                    return true;
                 }
 
                 return false;
@@ -61,7 +64,6 @@ public class MainActivity extends AppCompatActivity{
             public void onTabSelected(TabLayout.Tab tab) {
                 int position = tab.getPosition();
                 Fragment fragment;
-                Log.d("msg",position+"");
 
                 if(position==0){
                     fragment = policyFragment;
@@ -70,7 +72,6 @@ public class MainActivity extends AppCompatActivity{
                 }else {
                     fragment = nurseFragment;
                 }
-                Log.d("msg",fragment+" ::");
                 getSupportFragmentManager().beginTransaction().
                         replace(R.id.function_container,fragment).commit();
             }

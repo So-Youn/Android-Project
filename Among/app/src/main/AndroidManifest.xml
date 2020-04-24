@@ -9,8 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".page.boardWrite"></activity>
-        <activity android:name=".page.MainActivity">
+
+        <activity android:name=".page.boardWrite" />
+        <activity android:name=".page.calendar.CalendarActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
