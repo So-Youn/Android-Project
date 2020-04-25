@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:hint="Type Event"
+        android:id="@+id/eventName"
         android:inputType="textShortMessage"
         android:layout_margin="20dp"
         android:gravity="center"/>
