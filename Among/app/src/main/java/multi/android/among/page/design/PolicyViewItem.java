@@ -20,20 +20,19 @@ public class PolicyViewItem {
         this.pre = pre;
     }
 
-    public PolicyViewItem(PolicyFragment policyFragment, int fragment_policy, List<PolicyViewItem> recycle_card_data) {
-
-    }
-
 
     public int getImage() {
         return image;
-
     }
+
+
     public String getName() {
         return name;
     }
+
+
     public String getPre() {
-        return  pre;
+        return pre;
     }
 
     @Override

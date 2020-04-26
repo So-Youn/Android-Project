@@ -12,7 +12,7 @@ public class CalendarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
-     customCalendarView = (CustomCalendarView)findViewById(R.id.custom_calendar_view);
+        customCalendarView = (CustomCalendarView)findViewById(R.id.custom_calendar_view);
 
     }
 }

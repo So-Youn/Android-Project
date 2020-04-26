@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".page.boardWrite" />
-        <activity android:name=".page.calendar.CalendarActivity">
+        <activity android:name=".page.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
