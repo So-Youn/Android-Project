@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/colorbackground"
     tools:context=".page.MainActivity">
 
     <com.google.android.material.tabs.TabLayout
@@ -49,17 +50,21 @@
         android:name="multi.android.among.page.NurseFragment"
         />
     </LinearLayout>
+
     <LinearLayout
-        android:id="@+id/content_container"
+        android:id="@+id/navi_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        />
+
+        android:orientation="vertical" />
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+        android:background="#FFFFFF"
+        app:itemIconTint="@color/cardview_dark_background"
+        app:itemTextAppearanceActive="@color/colorPrimary"
         app:menu="@menu/bottom_bar"/>
 
 
