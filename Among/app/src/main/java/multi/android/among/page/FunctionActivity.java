@@ -1,22 +1,21 @@
 package multi.android.among.page;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 import multi.android.among.R;
+import multi.android.among.page.calendar.CalendarFragment;
 
-public class MainActivity extends AppCompatActivity{
+
+public class FunctionActivity extends AppCompatActivity {
 
 
     BottomNavigationView bottomNavigationView;
@@ -24,16 +23,17 @@ public class MainActivity extends AppCompatActivity{
     NurseFragment nurseFragment = new NurseFragment();
     HealthFragment healthFragment = new HealthFragment();
     PolicyFragment policyFragment = new PolicyFragment();
+    CalendarFragment calendarFragment = new CalendarFragment();
     TabLayout tabLayout;
     //RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.function_main);
 
         bottomNavigationView = findViewById(R.id.bottom_navi);
-        tabLayout = findViewById(R.id.function_tab);
+       // tabLayout = findViewById(R.id.function_tab);
       //  recyclerView = findViewById(R.id.list);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -52,44 +52,20 @@ public class MainActivity extends AppCompatActivity{
                     getSupportFragmentManager().beginTransaction().
                             replace(R.id.function_container, communityFragment).commitAllowingStateLoss();
                     return true;
+                }else if(menuItem.getItemId()==R.id.item4){
+                    getSupportFragmentManager().beginTransaction().
+                            replace(R.id.function_container, calendarFragment).commitAllowingStateLoss();
+                    return true;
                 }
 
                 return false;
             }
         });
 
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                int position = tab.getPosition();
-                Fragment fragment;
-
-                if(position==0){
-                    fragment = policyFragment;
-                }else if(position ==1){
-                    fragment = healthFragment;
-                }else {
-                    fragment = nurseFragment;
-                }
-                getSupportFragmentManager().beginTransaction().
-                        replace(R.id.function_container,fragment).commit();
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
 
     }
     public void btn_register(View view){
-        Intent intent = new Intent(MainActivity.this,boardWrite.class);
+        Intent intent = new Intent(FunctionActivity.this,boardWrite.class);
         startActivity(intent);
     }
 }

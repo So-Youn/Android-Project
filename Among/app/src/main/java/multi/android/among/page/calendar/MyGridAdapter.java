@@ -2,7 +2,6 @@ package multi.android.among.page.calendar;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.util.EventLog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.w3c.dom.Text;
+
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -21,9 +20,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.zip.Inflater;
 
 import multi.android.among.R;
+
 
 public class MyGridAdapter extends ArrayAdapter {
     List<Date> dates;

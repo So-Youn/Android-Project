@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="multi.android.among">
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
     <application
         android:allowBackup="true"
@@ -8,16 +9,25 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
 
         <activity android:name=".page.boardWrite" />
-        <activity android:name=".page.MainActivity">
+        <activity android:name=".page.FunctionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <receiver android:name=".page.calendar.AlarmReceiver"
+
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.exaple.among.calendar.DEFAULT"></action>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
