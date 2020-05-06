@@ -9,7 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-
+import com.example.among.R;
+import com.example.among.chatting.model.User;
+import com.example.among.function.FunctionActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -30,10 +32,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import multi.android.among.R;
-import multi.android.among.page.FunctionActivity;
-import multi.android.among.page.chatting.model.User;
 
 public class ChatLogActivity extends AppCompatActivity {
     SignInButton mSignInBtn;
@@ -73,6 +71,12 @@ public class ChatLogActivity extends AppCompatActivity {
         // [START initialize_auth]
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance();
+        if(auth.getCurrentUser()!=null){
+
+            startActivity(new Intent(ChatLogActivity.this, FunctionActivity.class));
+            finish();
+            return;
+        }
     }
 
     private void signIn() {

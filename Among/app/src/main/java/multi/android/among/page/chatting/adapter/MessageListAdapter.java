@@ -12,15 +12,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.among.R;
-import com.example.among.chatting.model.Message;
-import com.example.among.chatting.model.PhotoMessage;
-import com.example.among.chatting.model.TextMessage;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import multi.android.among.page.chatting.model.Message;
+import multi.android.among.page.chatting.model.PhotoMessage;
+import multi.android.among.page.chatting.model.TextMessage;
 
 public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.MessageViewHolder>{
     ArrayList<Message> mMessageList;
@@ -42,6 +42,9 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
         mMessageList.set(position,item);
         notifyItemChanged(position);
 
+    }
+    public void clearItem(){
+        mMessageList.clear();
     }
     public int getItemPosition(String messageId){
         int position = 0;
@@ -102,6 +105,7 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
             holder.sendDate.setText(messageDateFormat.format(item.getMessageDate()));
             holder.yourChatArea.setVisibility(View.GONE);
             holder.sendArea.setVisibility(View.VISIBLE);
+            holder.exitArea.setVisibility(View.GONE);
         }else{
             //상대방이 보낸 경우
             if (item.getMessageType() == Message.MessageType.TEXT){
@@ -109,11 +113,17 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
                 holder.rcvTxtView.setVisibility(View.VISIBLE);
                 holder.rcvImage.setVisibility(View.GONE);
             }else if(item.getMessageType() == Message.MessageType.PHOTO){
-                Glide.with(holder.yourChatArea).load(photoMessage.getPhotoUrl())
+                Glide
+                        .with(holder.yourChatArea)
+                        .load(photoMessage.getPhotoUrl())
                         .into(holder.rcvImage);
 
                 holder.rcvTxtView.setVisibility(View.GONE);
                 holder.rcvImage.setVisibility(View.VISIBLE);
+            }else if(item.getMessageType() == Message.MessageType.EXIT){
+                //{이름}님이 나가셨습니다.
+                holder.exitText.setText(item.getMessageUser().getName()+"님이 방에서 나가셨습니다.");
+
             }
             if(item.getUnreadCount()>0){
                 holder.rcvUnreadCount.setText(String.valueOf(item.getUnreadCount()));
@@ -121,15 +131,21 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
                 holder.sendUnreadCount.setText("");
             }
             if(item.getMessageUser().getProfileUrl()!=null){
-                Glide.with(holder.yourChatArea).load(item.getMessageUser().getProfileUrl())
+                Glide.with(holder.yourChatArea)
+                        .load(item.getMessageUser().getProfileUrl())
                         .into(holder.rcvProfileView);
             }
-            holder.rcvDate.setText(messageDateFormat.format(item.getMessageDate()));
-            holder.yourChatArea.setVisibility(View.VISIBLE);
-            holder.sendArea.setVisibility(View.GONE);
+            if(item.getMessageType()==Message.MessageType.EXIT){
+                holder.yourChatArea.setVisibility(View.GONE);
+                holder.sendArea.setVisibility(View.GONE);
+                holder.exitArea.setVisibility(View.VISIBLE);
+            }else{
+                holder.rcvDate.setText(messageDateFormat.format(item.getMessageDate()));
+                holder.yourChatArea.setVisibility(View.VISIBLE);
+                holder.sendArea.setVisibility(View.GONE);
 
+            }
         }
-
     }
 
     @Override
@@ -140,6 +156,7 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
     public static class MessageViewHolder extends RecyclerView.ViewHolder{
         LinearLayout yourChatArea; //상대방
         LinearLayout sendArea;
+        LinearLayout exitArea;
         CircleImageView rcvProfileView;
         TextView rcvTxtView; //상대방
         ImageView rcvImage;
@@ -148,11 +165,14 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
         TextView sendUnreadCount;
         TextView sendDate;
         TextView sendTxt;
+        TextView exitText;
         ImageView sendImage;
+
      public MessageViewHolder(View view){
          super(view);
          yourChatArea = view.findViewById(R.id.yourChatArea);
          sendArea = view.findViewById(R.id.myChatArea);
+         exitArea = view.findViewById(R.id.exitArea);
          rcvProfileView = view.findViewById(R.id.rcvProfile);
          rcvTxtView = view.findViewById(R.id.rcvTxt);
          rcvImage  = view.findViewById(R.id.rcvImage);
@@ -161,6 +181,7 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
          sendUnreadCount = view.findViewById(R.id.sendUnreadCount);
          sendDate = view.findViewById(R.id.sendDate);
          sendTxt = view.findViewById(R.id.sendTxt);
+         exitText = view.findViewById(R.id.exitTxt);
          sendImage = view.findViewById(R.id.sendImage);
      }
 

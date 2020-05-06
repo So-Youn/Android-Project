@@ -11,9 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.among.R;
-import com.example.among.chatting.model.User;
 
 import java.util.ArrayList;
+
+import multi.android.among.page.chatting.model.RoundedImageView;
+import multi.android.among.page.chatting.model.User;
 
 public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.FriendViewHolder> {
     public static final int UNSELECTION_MODE =1;
@@ -27,14 +29,14 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
         friendList.add(friend);
         notifyDataSetChanged(); // View 갱신
     }
-    /*public void setSelectionMode(int selectionMode){
+    public void setSelectionMode(int selectionMode){
         this.selectionMode = selectionMode; //상태값 기억할 수 있도록 구현
         notifyDataSetChanged();
-    }*/
-   /* public int getSelectionMode(){
+    }
+   public int getSelectionMode(){
         return  this.selectionMode;
 
-    }*/
+    }
     public int getSelectUserCount(){
         int selectionCount=0;
         for (User user :friendList){
@@ -72,14 +74,15 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
         final User friend = getItem(position);
         holder.emailView.setText(friend.getEmail());
         holder.nameView.setText(friend.getName());
-/*        if(getSelectionMode()==UNSELECTION_MODE){
+       if(getSelectionMode()==UNSELECTION_MODE){
             holder.FriendSelectionView.setVisibility(View.GONE);
         }else{
             holder.FriendSelectionView.setVisibility(View.VISIBLE);
-        }*/
+        }
         if (friend.getProfileUrl()!=null){
             Glide.with(holder.itemView)
-                    .load(friend.getProfileUrl()).into(holder.ProfileView);
+                    .load(friend.getProfileUrl())
+                    .into(holder.ProfileView);
         }
 
 

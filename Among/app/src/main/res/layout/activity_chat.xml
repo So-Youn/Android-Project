@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B0c6d3"
+    android:background="@color/colorbackground"
     tools:context=".chatting.ChatActivity">
     <LinearLayout
         android:id="@+id/chat_area"
@@ -15,15 +15,15 @@
         android:orientation="vertical"
         android:layout_weight="7"
         android:layout_height="wrap_content">
-       <TextView
+       <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 app:titleTextColor="#3F51B5"
                 android:padding="5dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:background="@color/colorbackground">
-            </TextView>
+                android:background="@color/appbar">
+            </androidx.appcompat.widget.Toolbar>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chat_rec_view"
         android:layout_width="match_parent"
@@ -35,11 +35,13 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="20dp">
+
         <ImageView
-            android:src="@drawable/pngcamera"
-            android:layout_weight="1"
+            android:id="@+id/photoSend"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/pngcamera" />
 
         <EditText
             android:id="@+id/edtContent"

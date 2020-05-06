@@ -10,19 +10,18 @@ import android.provider.Settings;
 import androidx.core.app.NotificationCompat;
 
 import com.example.among.R;
-import com.google.firebase.analytics.FirebaseAnalytics;
 
 public class Notification {
 
     private Context mContext;
     private NotificationManager mNotificationManager;
     private NotificationCompat.Builder mNotifyBuilder;
-
+   // String channelId = "channel_id";
     public Notification(Context context) {
         this.mContext = context;
         mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         mNotifyBuilder = new NotificationCompat.Builder(mContext);
-        mNotifyBuilder.setVibrate(new long[]{1000,1000});
+        mNotifyBuilder.setVibrate(new long[]{1000,1000,500});
         mNotifyBuilder.setPriority(100);
         mNotifyBuilder.setSmallIcon(R.mipmap.ic_launcher);
         mNotifyBuilder.setSound(Settings.System.DEFAULT_NOTIFICATION_URI);
@@ -54,8 +53,6 @@ public class Notification {
             mNotificationManager.notify(1, mNotifyBuilder.build());
         } catch (Exception e){
             e.printStackTrace();
-        } finally {
-            FirebaseAnalytics.getInstance(mContext).logEvent("notificationEvt", null);
         }
     }
 

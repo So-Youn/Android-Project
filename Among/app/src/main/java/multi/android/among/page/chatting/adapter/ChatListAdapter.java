@@ -10,21 +10,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-
+import com.example.among.R;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import multi.android.among.R;
-
 import multi.android.among.page.chatting.model.Chat;
+import multi.android.among.page.chatting.model.Message;
 
 public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ChatHolder> {
 
     private ArrayList<Chat> ChatList;
 
-    private SimpleDateFormat sdf = new SimpleDateFormat("MM/dd hh:mm");
+    private SimpleDateFormat sdf = new SimpleDateFormat("MM/dd\naa hh:mm");
     //객체 생성되었을 때 ArrayList 생성
     com.example.among.function.ChattingFragment chattingFragment = new com.example.among.function.ChattingFragment();
     public ChatListAdapter() {
@@ -39,13 +38,17 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ChatHo
     }
     public void removeItem(Chat chat){
         int position = getItemPosition(chat.getChatId());
-        ChatList.remove(position);
-        notifyDataSetChanged();
+        if ( position > -1 ) {
+            ChatList.remove(position);
+            notifyDataSetChanged();
+        }
     }
     public void updateItem(Chat chat){
         int changedItemPosition = getItemPosition(chat.getChatId());
-        ChatList.set(getItemPosition(chat.getChatId()),chat);
-        notifyItemChanged(changedItemPosition);
+        if ( changedItemPosition > -1 ) {
+            ChatList.set(changedItemPosition ,chat);
+            notifyItemChanged(changedItemPosition);
+        }
     }
     private int getItemPosition(String chatId) {
         int position = 0;
@@ -76,7 +79,14 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ChatHo
         final Chat item = getItem(position);
         Log.d("msg", "item" + item.toString());
         if(item.getLastMessage()!=null){
-            holder.lastMessageView.setText(item.getLastMessage().getMessageText());
+            if(item.getLastMessage().getMessageType() == Message.MessageType.TEXT){
+                holder.lastMessageView.setText(item.getLastMessage().getMessageText());
+            }else if (item.getLastMessage().getMessageType() == Message.MessageType.PHOTO){
+                holder.lastMessageView.setText("(사진)");
+            }else if(item.getLastMessage().getMessageType() == Message.MessageType.EXIT){
+                holder.lastMessageView.setText(item.getLastMessage().getMessageUser().getName());
+            }
+
             holder.lastMsgDateView.setText(sdf.format(item.getLastMessage().getMessageDate()));
         }
 
