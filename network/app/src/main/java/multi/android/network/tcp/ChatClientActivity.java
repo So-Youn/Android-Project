@@ -90,6 +90,8 @@ public class ChatClientActivity extends AppCompatActivity {
     }
     public void sendMessage(final String message) {
       //메시지를 서버에 전송할 수 있도록 작성하세요
+        pw.println(message);
+        pw.flush();
     }
 
 	//nickname을 다이얼로그를 통해서 입력받도록 구현한 리스너
@@ -110,11 +112,36 @@ public class ChatClientActivity extends AppCompatActivity {
         protected String doInBackground(Integer... integers) {
            //서버와 접속하여 서버가 보내오는 메시지를 읽을 수 있도록 작성하세요
             try {
-                Socket socket = new Socket("70.12.116.51",12345);
+                final Socket socket = new Socket("70.12.116.51",12345);
                 ioWork();
                 sendMsg(msg+"");
+                sendMsg(nickname);
                 userlist.add(nickname);
+                Thread readThread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String msg;
+                        try {
+                            msg = br.readLine();
+                            Log.d("msg","msg ::: "+msg);
+                            filteringMsg(msg);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            try {
+                                is.close();
+                                isr.close();
+                                br.close();
+                                os.close();
+                                pw.close();
+                                socket.close();
+                            }catch (IOException e1){
 
+                            }
+                        }
+                    }
+                });
+            } catch (UnknownHostException e) {
+                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -147,23 +174,36 @@ public class ChatClientActivity extends AppCompatActivity {
             System.out.println("프로토콜:"+protocol+",메시지:"+message);
             if(protocol.equals("new")){
                 userlist.add(message);
-				//내용을 추가하세요.
+                publishProgress("new","msg",message+"님이 입장하셨습니다.");
             }else if(protocol.equals("old")){
                 userlist.add(message);
-				 //내용을 추가하세요.
+                publishProgress("old","msg",message);
             }else if(protocol.equals("chatting")){
                 String nickname = token.nextToken();
-               //내용을 추가하세요.
+             publishProgress("chatting",nickname,message);
             }else if(protocol.equals("out")){
                 userlist.remove(message);
-              //내용을 추가하세요.
+                publishProgress("out",nickname+"님이 퇴장하셨습니다.");
             }
 
         }
 
         @Override
         protected void onProgressUpdate(String... values) {
-           //코드를 추가하세요 - 뷰 바꾸는 작업
+           super.onProgressUpdate(values);
+            // doInBackground에서 발생하는 값을 이용해서 화면을 변경하고 싶은 경우
+            //Multi thread로 처리하려고 하는 작업을 여기에 기술
+            String protocol = values[0];
+            //protocol - nickname - msg
+            if(protocol.equals("new")){
+                useradapter.notifyDataSetChanged();
+            }else if(protocol.equals("old")){
+                useradapter.notifyDataSetChanged();
+            }else if(protocol.equals("chatting")){
+                msg.add(values[1]+">>"+values[2]);
+                msgadapter.notifyDataSetChanged();
+                msg_listview.setSelection(msg.size()-1);
+            }
         }
     }
 
