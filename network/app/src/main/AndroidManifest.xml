@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".tcp.ChatClientActivity2" />
-        <activity android:name=".android.LedTest">
+        <activity android:name=".arduino.LedControlActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

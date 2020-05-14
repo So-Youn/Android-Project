@@ -240,7 +240,7 @@ public class ChatClientActivity2 extends AppCompatActivity {
             msg_listview.setSelection(msg.size() - 1);*/
         }
     }
-
+    //소켓 close
     @Override
     protected void onDestroy() {
         super.onDestroy();
